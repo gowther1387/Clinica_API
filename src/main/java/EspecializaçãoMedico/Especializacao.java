@@ -1,0 +1,17 @@
+package EspecializaçãoMedico;
+
+public enum Especializacao {
+    ALERGOLOGIA,
+    CARDIOLOGIA,
+    DERMATOLOGIA,
+    ENDOCRINOLOGIA,
+    GASTROENTEROLOGIA,
+    GINECOLOGIA,
+    NEUROLOGIA,
+    OFTALMOLOGIA,
+    ORTOPEDIA,
+    PEDIATRIA,
+    PSIQUIATRIA,
+    UROLOGIA
+}
+
