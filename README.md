@@ -1,4 +1,6 @@
-🚀 Projeto em Spring Boot - Projeto de uma API para uma clinica:
+🚀 Projeto em Spring Boot - Uma API para uma clinica :
+
+Esse projeto tem como intuito fornecer uma API de agendamento de consultas de para os medicos de uma clinica especifica. 
 
 🛠️ Tecnologias Utilizadas
 
@@ -8,7 +10,7 @@ Maven
 IDE (IntelliJ)
 
 🎯 Objetivo:
-  Fazer uma API REST em spring boot para aprender mais sobre o padrão REST e o uso do Spring framework. Esse projeto tem como intuito fornecer uma API de agendamento de consulta de pacientes com os medicos de uma clina especifica.
+  Fazer uma API REST em spring boot para aprender mais sobre o padrão REST e o uso do Spring framework. 
 
 📁 Estrutura Inicial do Projeto
 
