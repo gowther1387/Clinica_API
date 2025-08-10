@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.IdGeneratorType;
+import service.StatusConsulta;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "consulta")
@@ -16,11 +19,11 @@ import org.hibernate.annotations.IdGeneratorType;
 public class Consulta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
-    private String dataHora;
+    private LocalDateTime dataHora;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn( name = "medico_crm", nullable = false)
@@ -32,16 +35,13 @@ public class Consulta {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private boolean consultaMarcada = true;
+    private StatusConsulta consultaMarcada;
 
-
-    private String motivoDoCancelamento;
-
-    public String getDataHora() {
+    public LocalDateTime getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(String dataHora) {
+    public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
     }
 
@@ -67,5 +67,13 @@ public class Consulta {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    public StatusConsulta getConsultaMarcada() {
+        return consultaMarcada;
+    }
+
+    public void setConsultaMarcada(StatusConsulta consultaMarcada) {
+        this.consultaMarcada = consultaMarcada;
     }
 }

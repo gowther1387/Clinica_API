@@ -2,13 +2,22 @@ package model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "pacientes")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Paciente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn
     private long id;
 
     @Column(name = "nome")
@@ -28,6 +37,5 @@ public class Paciente {
 
     @Column(name = "email")
     private String email;
-
 
 }

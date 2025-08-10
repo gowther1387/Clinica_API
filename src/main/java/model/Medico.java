@@ -1,5 +1,6 @@
 package model;
 
+import EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,14 +8,14 @@ import jakarta.persistence.*;
 public class Medico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "nome")
     private String nome;
 
     @Column(name = "area")
-    private String area;
+    private Especializacao area;
 
     @Column(name = "crm")
     private String crm;
@@ -33,11 +34,11 @@ public class Medico {
         this.id = id;
     }
 
-    public String getArea() {
+    public Especializacao getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Especializacao area) {
         this.area = area;
     }
 
