@@ -1,9 +1,12 @@
 package services;
 
+import EspecializaçãoMedico.Especializacao;
 import Repositories.MedicoRepository;
+import jakarta.persistence.Table;
 import models.Medico;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +25,16 @@ public class MedicoCadastro {
     public Medico ProcurarMedicoPorCrm(String crm){
         return medicoRepository.getReferenceByCrm(crm);
     }
+
+
+    public List<Medico> listaDeMedicos(){
+        return medicoRepository.findAll();
+    }
+
+    public List<Medico> listaDeMedicosPorEspecialidade(Especializacao e){
+        return medicoRepository.findByEspecializacao(e);
+    }
+
 
     public Medico atualizarPaciente(Medico m){
         Optional<Medico> optionalMedico = medicoRepository.findById(m.getId());

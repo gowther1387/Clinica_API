@@ -19,12 +19,12 @@ public class ConsultaService{
         return consultaRepository.save(c);
     }
 
-    public Consulta procurarConsultaPorId(Long id){
-        return consultaRepository.getReferenceById(id);
+    public Consulta procurarConsultaPorId(Long idChave){
+        return consultaRepository.getReferenceById(idChave);
     }
 
     public Consulta atualizarConsulta(Consulta c){
-        Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getId());
+        Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getIdChave());
 
         if(optionalConsulta.isPresent()){
             Consulta toUpdate = optionalConsulta.get();

@@ -3,8 +3,9 @@ package models;
 import EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
 
+
 @Entity
-@Table(name = "medicos")
+@Table(name = "tb_medicos")
 public class Medico {
 
     @Id

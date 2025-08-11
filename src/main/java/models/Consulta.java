@@ -11,15 +11,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "consulta")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "IdChave")
+    private long idChave;
 
     @Column(nullable = false)
     private LocalDateTime dataHora;
@@ -44,12 +41,12 @@ public class Consulta {
         this.dataHora = dataHora;
     }
 
-    public long getId() {
-        return id;
+    public long getIdChave() {
+        return idChave;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdChave(long idChave) {
+        this.idChave = idChave;
     }
 
     public Medico getMedico() {

@@ -1,12 +1,14 @@
 package Repositories;
 
+import EspecializaçãoMedico.Especializacao;
 import models.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
-    List<Medico> findByCrm(String crm);
 
     Medico getReferenceByCrm(String Crm);
+
+    List<Medico> findByEspecializacao(Especializacao especializacao);
 }
