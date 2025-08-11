@@ -1,4 +1,4 @@
-package model;
+package models;
 
 import EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Medico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "nome")

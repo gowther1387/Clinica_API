@@ -1,6 +1,6 @@
-package Repository;
+package Repositories;
 
-import model.Medico;
+import models.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package Repository;
+package Repositories;
 
-import model.Paciente;
+import models.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

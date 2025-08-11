@@ -1,12 +1,11 @@
-package model;
+package models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.IdGeneratorType;
-import service.StatusConsulta;
+import StatusConsulta.StatusConsulta;
 
 import java.time.LocalDateTime;
 
@@ -30,7 +29,7 @@ public class Consulta {
     private Medico medico;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "paciente_id", nullable = false)
+    @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
     @Enumerated(EnumType.STRING)

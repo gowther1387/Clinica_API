@@ -1,9 +1,7 @@
-package service;
+package services;
 
-import Repository.MedicoRepository;
-import Repository.PacienteRepository;
-import model.Medico;
-import model.Paciente;
+import Repositories.MedicoRepository;
+import models.Medico;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
