@@ -5,12 +5,13 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "tb_medicos")
+@Table(name = "medicos")
 public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @JoinColumn
+    private long idMedico;
 
     @Column(name = "nome")
     private String nome;
@@ -19,7 +20,7 @@ public class Medico {
     private Especializacao area;
 
     @Column(name = "crm")
-    private String crm;
+    private long crm;
 
     @Column(name = "telefone")
     private String telefone;
@@ -27,12 +28,12 @@ public class Medico {
     @Column(name = "email")
     private String email;
 
-    public long getId() {
-        return id;
+    public long getIdMedico() {
+        return idMedico;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdMedico(long idMedico) {
+        this.idMedico = idMedico;
     }
 
     public Especializacao getArea() {
@@ -51,11 +52,11 @@ public class Medico {
         this.nome = nome;
     }
 
-    public String getCrm() {
+    public long getCrm() {
         return crm;
     }
 
-    public void setCrm(String crm) {
+    public void setCrm(long crm) {
         this.crm = crm;
     }
 

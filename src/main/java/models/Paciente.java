@@ -2,19 +2,15 @@ package models;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "tb_pacientes")
+@Table(name = "pacientes")
 public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JoinColumn
-    private long id;
+    private long idPaciente;
 
     @Column(name = "nome")
     private String nome;
@@ -35,12 +31,12 @@ public class Paciente {
     private String email;
 
 
-    public long getId() {
-        return id;
+    public long getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdPaciente(long idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getEmail() {

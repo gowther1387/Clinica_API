@@ -1,6 +1,7 @@
 package services;
 
-import Repositories.ConsultaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import repositories.ConsultaRepository;
 import models.Consulta;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ public class ConsultaService{
 
     private final ConsultaRepository consultaRepository;
 
+
     public ConsultaService(ConsultaRepository consultaRepository) {
         this.consultaRepository = consultaRepository;
     }
@@ -20,7 +22,7 @@ public class ConsultaService{
     }
 
     public Consulta procurarConsultaPorId(Long idChave){
-        return consultaRepository.getReferenceById(idChave);
+        return consultaRepository.getReferenceByIdChave(idChave);
     }
 
     public Consulta atualizarConsulta(Consulta c){

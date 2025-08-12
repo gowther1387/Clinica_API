@@ -1,8 +1,7 @@
 package services;
 
 import EspecializaçãoMedico.Especializacao;
-import Repositories.MedicoRepository;
-import jakarta.persistence.Table;
+import repositories.MedicoRepository;
 import models.Medico;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +35,8 @@ public class MedicoCadastro {
     }
 
 
-    public Medico atualizarPaciente(Medico m){
-        Optional<Medico> optionalMedico = medicoRepository.findById(m.getId());
+    public Medico atualizarMedico(Medico m){
+        Optional<Medico> optionalMedico = medicoRepository.findById(m.getIdMedico());
 
         if(optionalMedico.isPresent()){
             Medico toUpdate = optionalMedico.get();

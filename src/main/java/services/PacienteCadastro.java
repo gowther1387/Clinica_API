@@ -1,6 +1,6 @@
 package services;
 
-import Repositories.PacienteRepository;
+import repositories.PacienteRepository;
 import models.Paciente;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class PacienteCadastro {
     }
 
     public Paciente atualizarPaciente(Paciente p){
-        Optional<Paciente> optionalPaciente = pacienteRepository.findById(p.getId());
+        Optional<Paciente> optionalPaciente = pacienteRepository.findById(p.getIdPaciente());
 
         if(optionalPaciente.isPresent()){
             Paciente toUpdate = optionalPaciente.get();

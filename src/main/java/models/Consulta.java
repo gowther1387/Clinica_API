@@ -1,10 +1,6 @@
 package models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import StatusConsulta.StatusConsulta;
 
 import java.time.LocalDateTime;
@@ -14,7 +10,7 @@ import java.time.LocalDateTime;
 public class Consulta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "IdChave")
     private long idChave;
 

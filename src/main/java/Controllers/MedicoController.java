@@ -3,9 +3,8 @@ package Controllers;
 
 import EspecializaçãoMedico.Especializacao;
 import models.Medico;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import services.MedicoCadastro;
 
 import java.util.List;
@@ -14,6 +13,7 @@ import java.util.List;
 @RequestMapping("api/medico")
 public class MedicoController {
 
+    
     private MedicoCadastro medicoCadastro;
 
     @GetMapping("/lstmedicos")
@@ -26,5 +26,13 @@ public class MedicoController {
         return medicoCadastro.listaDeMedicosPorEspecialidade(especializacao);
     }
 
+    @PostMapping
+    public Medico cadastroMedico(@RequestBody Medico m){
+        return medicoCadastro.cadastrarMedico(m);
+    }
 
+    @PutMapping("{crm}")
+    public Medico atualizarMedico(@RequestBody Medico m){
+        return medicoCadastro.atualizarMedico(m);
+    }
 }
