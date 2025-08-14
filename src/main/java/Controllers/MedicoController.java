@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/medico")
 public class MedicoController {
 
-    
+
     private MedicoCadastro medicoCadastro;
 
     @GetMapping("/lstmedicos")

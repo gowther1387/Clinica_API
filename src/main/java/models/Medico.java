@@ -10,13 +10,12 @@ public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JoinColumn
     private long idMedico;
 
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "area")
+    @Enumerated(EnumType.STRING)
     private Especializacao area;
 
     @Column(name = "crm")

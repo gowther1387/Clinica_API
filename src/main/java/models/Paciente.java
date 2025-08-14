@@ -9,7 +9,6 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JoinColumn
     private long idPaciente;
 
     @Column(name = "nome")

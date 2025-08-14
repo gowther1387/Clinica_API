@@ -1,6 +1,5 @@
 package services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import repositories.ConsultaRepository;
 import models.Consulta;
 import org.springframework.stereotype.Service;
