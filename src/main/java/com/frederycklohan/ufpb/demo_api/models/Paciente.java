@@ -1,7 +1,9 @@
-package models;
+package com.frederycklohan.ufpb.demo_api.models;
 
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "pacientes")
@@ -15,7 +17,7 @@ public class Paciente {
     private String nome;
 
     @Column(name = "idade")
-    private String idade;
+    private LocalDate idade;
 
     @Column(name = "rg")
     private String rg;
@@ -70,11 +72,11 @@ public class Paciente {
         this.rg = rg;
     }
 
-    public String getIdade() {
+    public LocalDate getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade(LocalDate idade) {
         this.idade = idade;
     }
 

@@ -1,7 +1,7 @@
-package services;
+package com.frederycklohan.ufpb.demo_api.services;
 
-import repositories.ConsultaRepository;
-import models.Consulta;
+import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
+import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -1,11 +1,10 @@
-package Controllers;
+package com.frederycklohan.ufpb.demo_api.Controllers;
 
 
-import EspecializaçãoMedico.Especializacao;
-import models.Medico;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
+import com.frederycklohan.ufpb.demo_api.models.Medico;
 import org.springframework.web.bind.annotation.*;
-import services.MedicoCadastro;
+import com.frederycklohan.ufpb.demo_api.services.MedicoCadastro;
 
 import java.util.List;
 

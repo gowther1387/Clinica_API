@@ -1,8 +1,8 @@
-package services;
+package com.frederycklohan.ufpb.demo_api.services;
 
-import EspecializaçãoMedico.Especializacao;
-import repositories.MedicoRepository;
-import models.Medico;
+import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
+import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
+import com.frederycklohan.ufpb.demo_api.models.Medico;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class MedicoCadastro {
         return medicoRepository.save(m);
     }
 
-    public Medico ProcurarMedicoPorCrm(String crm){
+    public Medico ProcurarMedicoPorCrm(long crm){
         return medicoRepository.getReferenceByCrm(crm);
     }
 
@@ -41,7 +41,7 @@ public class MedicoCadastro {
         if(optionalMedico.isPresent()){
             Medico toUpdate = optionalMedico.get();
             toUpdate.setNome(m.getNome());
-            toUpdate.setArea( m.getArea() );
+            toUpdate.setEspecializacao( m.getEspecializacao() );
             toUpdate.setCrm(m.getCrm());
             toUpdate.setEmail(m.getEmail());
             toUpdate.getTelefone(); 

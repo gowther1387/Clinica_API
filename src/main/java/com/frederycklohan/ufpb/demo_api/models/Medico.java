@@ -1,6 +1,6 @@
-package models;
+package com.frederycklohan.ufpb.demo_api.models;
 
-import EspecializaçãoMedico.Especializacao;
+import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
 
 
@@ -16,7 +16,7 @@ public class Medico {
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    private Especializacao area;
+    private Especializacao especializacao;
 
     @Column(name = "crm")
     private long crm;
@@ -35,12 +35,12 @@ public class Medico {
         this.idMedico = idMedico;
     }
 
-    public Especializacao getArea() {
-        return area;
+    public Especializacao getEspecializacao() {
+        return especializacao;
     }
 
-    public void setArea(Especializacao area) {
-        this.area = area;
+    public void setEspecializacao(Especializacao especializacao) {
+        this.especializacao = especializacao;
     }
 
     public String getNome() {

@@ -1,4 +1,4 @@
-package EspecializaçãoMedico;
+package com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico;
 
 public enum Especializacao {
     ALERGOLOGIA,

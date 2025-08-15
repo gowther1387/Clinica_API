@@ -1,7 +1,7 @@
-package models;
+package com.frederycklohan.ufpb.demo_api.models;
 
 import jakarta.persistence.*;
-import StatusConsulta.StatusConsulta;
+import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
 
 import java.time.LocalDateTime;
 
