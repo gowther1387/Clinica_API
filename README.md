@@ -14,7 +14,7 @@ IDE (IntelliJ)
 
 📁 Estrutura Inicial do Projeto
 
-Banco de Dados Relacional(pacientem/consulta/medico)
+Banco de Dados Relacional(paciente/consulta/medico)
 Services de cadastramento de paciente e medico 
 Service de agendamento de consulta
 Execução da aplicação em banco
