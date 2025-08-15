@@ -3,26 +3,36 @@ package com.frederycklohan.ufpb.demo_api.Controllers;
 
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.frederycklohan.ufpb.demo_api.services.MedicoCadastro;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/medico")
+@RequestMapping(path = "/api")
 public class MedicoController {
 
 
-    private MedicoCadastro medicoCadastro;
+    private final MedicoCadastro medicoCadastro;
+
+    public MedicoController(MedicoCadastro medicoCadastro) {
+        this.medicoCadastro = medicoCadastro;
+    }
 
     @GetMapping("/lstmedicos")
     List<Medico> listaDeMedicos(){
         return medicoCadastro.listaDeMedicos();
     }
 
-    @GetMapping("/lstmedicos/{especialidade}")
-    List<Medico> listaDeMedicosPorEspecialidade(Especializacao especializacao){
+    @GetMapping(path = "/lstmedicos/{especializacao}")
+    List<Medico> listaDeMedicosPorEspecialidade(@PathVariable Especializacao especializacao){
         return medicoCadastro.listaDeMedicosPorEspecialidade(especializacao);
+    }
+
+    @GetMapping(path = "/findmedico/{crm}")
+    Medico findMedicoPorCrm(@PathVariable long crm){
+        return medicoCadastro.ProcurarMedicoPorCrm(crm);
     }
 
     @PostMapping
@@ -30,8 +40,14 @@ public class MedicoController {
         return medicoCadastro.cadastrarMedico(m);
     }
 
-    @PutMapping("{crm}")
+    @PutMapping(path = "/{crm}")
     public Medico atualizarMedico(@RequestBody Medico m){
         return medicoCadastro.atualizarMedico(m);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(path = "/dltmedico/{idMedico}")
+    public void deletarMedico(@PathVariable long idMedico){
+        medicoCadastro.deletarPaciente(idMedico);
     }
 }

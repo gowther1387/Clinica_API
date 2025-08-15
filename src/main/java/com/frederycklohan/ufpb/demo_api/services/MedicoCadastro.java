@@ -1,5 +1,6 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
+import com.frederycklohan.ufpb.demo_api.Controllers.MedicoController;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
@@ -11,9 +12,9 @@ import java.util.Optional;
 @Service
 public class MedicoCadastro {
 
-    private MedicoRepository medicoRepository;
+    private final MedicoRepository medicoRepository;
 
-    private void medicoCadastro(MedicoRepository medicoRepository) {
+    MedicoCadastro(MedicoRepository medicoRepository) {
         this.medicoRepository = medicoRepository;
     }
 
@@ -51,8 +52,10 @@ public class MedicoCadastro {
         return null;
     }
 
-    public void deletarPaciente(Medico m){
-        medicoRepository.delete(m);
+    public void deletarPaciente(long idMedico){
+
+        medicoRepository.findById(idMedico)
+                .ifPresent(m ->medicoRepository.deleteById(m.getIdMedico()));
     }
 
 

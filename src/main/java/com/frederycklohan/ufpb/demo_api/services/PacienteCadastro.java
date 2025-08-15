@@ -42,8 +42,9 @@ public class PacienteCadastro {
         return null;
     }
 
-    public void deletarPaciente(Paciente p){
-        pacienteRepository.delete(p);
+    public void deletarPaciente(long idPaciente) {
+        pacienteRepository.findById(idPaciente)
+                .ifPresent(p ->pacienteRepository.deleteById(p.getIdPaciente()));
     }
 
 
