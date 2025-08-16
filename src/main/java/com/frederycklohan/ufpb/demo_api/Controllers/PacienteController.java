@@ -9,31 +9,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/paciente")
+@RequestMapping(path = "/api/paciente")
 public class PacienteController {
 
 
-    private  PacienteCadastro pacienteCadastro;
+    private final PacienteCadastro pacienteCadastro;
 
-
+    public PacienteController(PacienteCadastro pacienteCadastro){
+        this.pacienteCadastro = pacienteCadastro;
+    }
 
     @PostMapping("/cdstPaciente")
     public Paciente cadastrarPaciente(@RequestBody Paciente p) {
         return pacienteCadastro.cadastrarPaciente(p);
     }
 
-    @GetMapping("/paciente/{cpf}")
+    @GetMapping(path = "/findPaciente/{cpf}")
     public Paciente procurarPacientePorCpf(@PathVariable String cpf) {
         return pacienteCadastro.procurarPacientePorCpf(cpf);
     }
 
-    @GetMapping("/paciente/{rg}")
+    @GetMapping( path ="/paciente/{rg}")
     public Paciente procurarPacientePorRg(@PathVariable String rg) {
         return pacienteCadastro.procurarPacientePorRg(rg);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/dltPaciente/{id}")
+    @DeleteMapping(path = "/dltPaciente/{idPaciente}")
     public void deletarPaciente( @PathVariable long idPaciente) {
         pacienteCadastro.deletarPaciente(idPaciente);
     }

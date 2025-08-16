@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
     Medico getReferenceByCrm(long Crm);
-        List<Medico> findByEspecializacao(Especializacao especializacao);
+    List<Medico> findByEspecializacao(Especializacao especializacao);
 }

@@ -20,6 +20,11 @@ public class MedicoController {
         this.medicoCadastro = medicoCadastro;
     }
 
+    @PostMapping
+    public Medico cadastroMedico(@RequestBody Medico m){
+        return medicoCadastro.cadastrarMedico(m);
+    }
+
     @GetMapping("/lstmedicos")
     List<Medico> listaDeMedicos(){
         return medicoCadastro.listaDeMedicos();
@@ -35,19 +40,14 @@ public class MedicoController {
         return medicoCadastro.ProcurarMedicoPorCrm(crm);
     }
 
-    @PostMapping
-    public Medico cadastroMedico(@RequestBody Medico m){
-        return medicoCadastro.cadastrarMedico(m);
-    }
-
-    @PutMapping(path = "/{crm}")
-    public Medico atualizarMedico(@RequestBody Medico m){
+    @PutMapping(path = "/att/{crm}")
+    public Medico atualizarMedico(@PathVariable long crm ,@RequestBody Medico m){
         return medicoCadastro.atualizarMedico(m);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = "/dltmedico/{idMedico}")
     public void deletarMedico(@PathVariable long idMedico){
-        medicoCadastro.deletarPaciente(idMedico);
+        medicoCadastro.deletarMedico(idMedico);
     }
 }

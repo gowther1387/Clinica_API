@@ -1,9 +1,11 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
+import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +26,10 @@ public class ConsultaService{
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
+    public List<Medico> procurarConsultaPorMedico(long idMedico){
+        return consultaRepository.findByMedico(idMedico);
+    }
+
     public Consulta atualizarConsulta(Consulta c){
         Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getIdChave());
 
@@ -39,7 +45,7 @@ public class ConsultaService{
         return null;
     }
 
-    public void deletarConsulta(Consulta c){
-        consultaRepository.delete(c);
+    public void deletarConsulta(long idChave){
+        consultaRepository.findById(idChave).ifPresent(c -> consultaRepository.deleteById(c.getIdChave()));
     }
 }

@@ -52,7 +52,7 @@ public class MedicoCadastro {
         return null;
     }
 
-    public void deletarPaciente(long idMedico){
+    public void deletarMedico(long idMedico){
 
         medicoRepository.findById(idMedico)
                 .ifPresent(m ->medicoRepository.deleteById(m.getIdMedico()));
