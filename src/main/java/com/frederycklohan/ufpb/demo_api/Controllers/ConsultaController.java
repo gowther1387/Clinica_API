@@ -29,12 +29,12 @@ public class ConsultaController {
     }
 
     @GetMapping(path = "/findConsulta/{idMedico}")
-    List<Medico> ListaDeConsultasDoMedico(@PathVariable long idMedico){
-        return consultaService.procurarConsultaPorMedico(idMedico);
+    List<Consulta> ListaDeConsultasDoMedico(@PathVariable Medico m){
+        return consultaService.procurarConsultaPorMedico(m);
     }
 
     @PutMapping(path = "/attConsulta/{idChave}")
-    public Consulta atualizarConsulta(@PathVariable Long idChave, @RequestBody Consulta c){
+    public Consulta atualizarConsulta(@PathVariable long idChave, @RequestBody Consulta c){
         return consultaService.atualizarConsulta(c);
     }
     @ResponseStatus(HttpStatus.OK)

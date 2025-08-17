@@ -18,11 +18,11 @@ public class Consulta {
     private LocalDateTime dataHora;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "medico_id", nullable = false)
+    @JoinColumn( name = "medico", nullable = false)
     private Medico medico;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "paciente_id", nullable = false)
+    @JoinColumn(name = "paciente", nullable = false)
     private Paciente paciente;
 
     @Enumerated(EnumType.STRING)

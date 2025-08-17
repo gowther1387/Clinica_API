@@ -8,7 +8,5 @@ import java.util.List;
 
 public interface ConsultaRepository extends JpaRepository<Consulta,Long> {
     Consulta getReferenceByIdChave(long idChave);
-    List<Medico> findByMedico(long idMedico);
-
-    List<Consulta> idChave(long idChave);
+    List<Consulta> findConsultaByMedico(Medico medico);
 }

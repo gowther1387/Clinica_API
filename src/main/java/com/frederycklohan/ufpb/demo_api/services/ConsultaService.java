@@ -3,8 +3,11 @@ package com.frederycklohan.ufpb.demo_api.services;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
+import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
+import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import org.springframework.stereotype.Service;
 
+import javax.sound.midi.MidiMessage;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,16 +25,16 @@ public class ConsultaService{
         return consultaRepository.save(c);
     }
 
-    public Consulta procurarConsultaPorId(Long idChave){
+    public Consulta procurarConsultaPorId(long idChave){
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
-    public List<Medico> procurarConsultaPorMedico(long idMedico){
-        return consultaRepository.findByMedico(idMedico);
+    public List<Consulta> procurarConsultaPorMedico(Medico m) {
+            return consultaRepository.findConsultaByMedico(m);
     }
 
     public Consulta atualizarConsulta(Consulta c){
-        Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getIdChave());
+        Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getMedico().getIdMedico());
 
         if(optionalConsulta.isPresent()){
             Consulta toUpdate = optionalConsulta.get();
