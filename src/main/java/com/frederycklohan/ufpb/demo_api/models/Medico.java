@@ -74,4 +74,16 @@ public class Medico {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "idMedico=" + idMedico +
+                ", nome='" + nome + '\'' +
+                ", especializacao=" + especializacao +
+                ", crm=" + crm +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

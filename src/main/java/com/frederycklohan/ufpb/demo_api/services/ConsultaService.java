@@ -3,11 +3,8 @@ package com.frederycklohan.ufpb.demo_api.services;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
-import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
-import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import org.springframework.stereotype.Service;
 
-import javax.sound.midi.MidiMessage;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +26,8 @@ public class ConsultaService{
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
-    public List<Consulta> procurarConsultaPorMedico(Medico m) {
-            return consultaRepository.findConsultaByMedico(m);
+    public List<Consulta> procurarPacientesDoMedico(Medico m) {
+            return consultaRepository.findPacientesByMedico(m);
     }
 
     public Consulta atualizarConsulta(Consulta c){
@@ -41,7 +38,7 @@ public class ConsultaService{
             toUpdate.setDataHora(c.getDataHora());
             toUpdate.setMedico(c.getMedico() );
             toUpdate.setPaciente(c.getPaciente());
-            toUpdate.setConsultaMarcada(c.getConsultaMarcada());
+            toUpdate.setStatusConsulta(c.getStatusConsulta());
             consultaRepository.save(toUpdate);
             return toUpdate;
         }

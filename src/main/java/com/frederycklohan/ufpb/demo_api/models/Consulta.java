@@ -3,6 +3,7 @@ package com.frederycklohan.ufpb.demo_api.models;
 import jakarta.persistence.*;
 import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +16,7 @@ public class Consulta {
     private long idChave;
 
     @Column(nullable = false)
-    private LocalDateTime dataHora;
+    private LocalDate dataHora;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn( name = "medico", nullable = false)
@@ -27,13 +28,13 @@ public class Consulta {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private StatusConsulta consultaMarcada;
+    private StatusConsulta statusConsulta;
 
-    public LocalDateTime getDataHora() {
+    public LocalDate getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
+    public void setDataHora(LocalDate dataHora) {
         this.dataHora = dataHora;
     }
 
@@ -61,11 +62,23 @@ public class Consulta {
         this.paciente = paciente;
     }
 
-    public StatusConsulta getConsultaMarcada() {
-        return consultaMarcada;
+    public StatusConsulta getStatusConsulta() {
+        return statusConsulta;
     }
 
-    public void setConsultaMarcada(StatusConsulta consultaMarcada) {
-        this.consultaMarcada = consultaMarcada;
+    public void setStatusConsulta(StatusConsulta statusConsulta) {
+        this.statusConsulta = statusConsulta;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "idChave=" + idChave +
+                ", dataHora=" + dataHora +
+                ", medico=" + medico +
+                ", paciente=" + paciente +
+                ", statusConsulta=" + statusConsulta +
+                '}';
     }
 }

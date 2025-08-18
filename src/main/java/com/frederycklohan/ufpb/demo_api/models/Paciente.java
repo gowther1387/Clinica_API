@@ -87,4 +87,17 @@ public class Paciente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "idPaciente=" + idPaciente +
+                ", nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", rg='" + rg + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

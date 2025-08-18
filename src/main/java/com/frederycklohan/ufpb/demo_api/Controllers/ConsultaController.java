@@ -23,14 +23,14 @@ public class ConsultaController {
         return consultaService.cadastrarConsulta(c);
     }
 
-    @GetMapping(path = "/findConsulta/{idChave}")
-    public Consulta consultarConsulta(@PathVariable Long idChave){
+    @GetMapping(path = "/findConsultas/{idChave}")
+    public Consulta consultarConsulta(@PathVariable long idChave){
         return consultaService.procurarConsultaPorId(idChave);
     }
 
-    @GetMapping(path = "/findConsulta/{idMedico}")
-    List<Consulta> ListaDeConsultasDoMedico(@PathVariable Medico m){
-        return consultaService.procurarConsultaPorMedico(m);
+    @GetMapping(path = "/findPacientes/{m}")
+    List<Consulta> listaDepacientesDoMedico(@PathVariable Medico m){
+        return consultaService.procurarPacientesDoMedico(m);
     }
 
     @PutMapping(path = "/attConsulta/{idChave}")
