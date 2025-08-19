@@ -18,11 +18,11 @@ public class Consulta {
     @Column(nullable = false)
     private LocalDate dataHora;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn( name = "medico", nullable = false)
     private Medico medico;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paciente", nullable = false)
     private Paciente paciente;
 

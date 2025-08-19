@@ -1,6 +1,7 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
 import com.frederycklohan.ufpb.demo_api.models.Medico;
+import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,8 @@ public class ConsultaService{
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
-    public List<Consulta> procurarPacientesDoMedico(Medico m) {
-            return consultaRepository.findPacientesByMedico(m);
+    public List<Paciente> procurarPacientesDoMedico(long  idMedico) {
+            return consultaRepository.findPacientesByMedico(idMedico);
     }
 
     public Consulta atualizarConsulta(Consulta c){

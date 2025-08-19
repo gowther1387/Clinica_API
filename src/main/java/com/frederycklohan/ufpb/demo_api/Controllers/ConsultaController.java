@@ -2,6 +2,7 @@ package com.frederycklohan.ufpb.demo_api.Controllers;
 
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
+import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import com.frederycklohan.ufpb.demo_api.services.ConsultaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Consulta")
-public class ConsultaController {
+public class    ConsultaController {
 
     private final ConsultaService consultaService;
 
@@ -28,9 +29,9 @@ public class ConsultaController {
         return consultaService.procurarConsultaPorId(idChave);
     }
 
-    @GetMapping(path = "/findPacientes/{m}")
-    List<Consulta> listaDepacientesDoMedico(@PathVariable Medico m){
-        return consultaService.procurarPacientesDoMedico(m);
+    @GetMapping(path = "/findPacientes/{idMedico}")
+    List<Paciente> listaDepacientesDoMedico(@PathVariable long idMedico){
+        return consultaService.procurarPacientesDoMedico(idMedico);
     }
 
     @PutMapping(path = "/attConsulta/{idChave}")
