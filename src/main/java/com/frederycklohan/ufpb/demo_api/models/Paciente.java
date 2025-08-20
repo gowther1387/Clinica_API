@@ -4,6 +4,7 @@ package com.frederycklohan.ufpb.demo_api.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "pacientes")
@@ -30,6 +31,11 @@ public class Paciente {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(mappedBy = "pacientes")
+    public Set<Consulta> consultas ;
+
+
 
 
     public long getIdPaciente() {
@@ -86,6 +92,15 @@ public class Paciente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+
+    public Set<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(Set<Consulta> consultas) {
+        this.consultas = consultas;
     }
 
     @Override

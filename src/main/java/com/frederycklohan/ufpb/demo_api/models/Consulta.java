@@ -5,6 +5,7 @@ import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "consulta")
@@ -22,9 +23,13 @@ public class Consulta {
     @JoinColumn( name = "medico", nullable = false)
     private Medico medico;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "paciente", nullable = false)
-    private Paciente paciente;
+    @ManyToMany()
+    @JoinTable(
+                name = "consulta_paciente",
+                joinColumns = @JoinColumn(name = "idChave"),
+                inverseJoinColumns = @JoinColumn(name = "idPaciente")
+    )
+    private Set<Paciente> pacientes;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -54,12 +59,12 @@ public class Consulta {
         this.medico = medico;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public Set<Paciente> getPacientes() {
+        return pacientes;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setPacientes(Set<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 
     public StatusConsulta getStatusConsulta() {
@@ -70,14 +75,13 @@ public class Consulta {
         this.statusConsulta = statusConsulta;
     }
 
-
     @Override
     public String toString() {
         return "Consulta{" +
                 "idChave=" + idChave +
                 ", dataHora=" + dataHora +
                 ", medico=" + medico +
-                ", paciente=" + paciente +
+                ", pacientes=" + pacientes +
                 ", statusConsulta=" + statusConsulta +
                 '}';
     }

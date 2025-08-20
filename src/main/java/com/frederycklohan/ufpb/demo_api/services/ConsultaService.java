@@ -38,7 +38,7 @@ public class ConsultaService{
             Consulta toUpdate = optionalConsulta.get();
             toUpdate.setDataHora(c.getDataHora());
             toUpdate.setMedico(c.getMedico() );
-            toUpdate.setPaciente(c.getPaciente());
+            toUpdate.setPacientes(c.getPacientes());
             toUpdate.setStatusConsulta(c.getStatusConsulta());
             consultaRepository.save(toUpdate);
             return toUpdate;
