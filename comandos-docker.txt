@@ -1,0 +1,2 @@
+docker run --name "nome da imagem" - e "nome da variavel de ambiente" -p "mapear a porta da imagem"
+"
