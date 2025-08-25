@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: clinicaapi
+  datasource:
+    url: jdbc:postgresql://localhost:5432/clinicadb
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
