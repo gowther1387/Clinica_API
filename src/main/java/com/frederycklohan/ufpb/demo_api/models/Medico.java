@@ -3,35 +3,37 @@ package com.frederycklohan.ufpb.demo_api.models;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 
 @Entity
-@Table(name = "medicos")
+@Table(name = "medicos", schema = "public")
 public class Medico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idMedico;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID idMedico;
 
-    @Column(name = "nome")
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
     @Enumerated(EnumType.STRING)
     private Especializacao especializacao;
 
-    @Column(name = "crm")
+    @Column(name = "crm", nullable = false)
     private long crm;
 
-    @Column(name = "telefone")
+    @Column(name = "telefone", length = 20, nullable = false)
     private String telefone;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 100, nullable = false)
     private String email;
 
-    public long getIdMedico() {
+    public UUID getIdMedico() {
         return idMedico;
     }
 
-    public void setIdMedico(long idMedico) {
+    public void setIdMedico(UUID idMedico) {
         this.idMedico = idMedico;
     }
 
