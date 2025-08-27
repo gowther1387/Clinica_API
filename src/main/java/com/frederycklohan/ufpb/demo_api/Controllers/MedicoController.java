@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.frederycklohan.ufpb.demo_api.services.MedicoCadastro;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -47,7 +48,7 @@ public class MedicoController {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = "/dltmedico/{idMedico}")
-    public void deletarMedico(@PathVariable long idMedico){
+    public void deletarMedico(@PathVariable UUID idMedico){
         medicoCadastro.deletarMedico(idMedico);
     }
 }

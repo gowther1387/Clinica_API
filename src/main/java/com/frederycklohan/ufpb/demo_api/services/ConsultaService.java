@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ConsultaService{
 
     private final ConsultaRepository consultaRepository;
 
-
-    public ConsultaService(ConsultaRepository consultaRepository) {
+    ConsultaService(ConsultaRepository consultaRepository) {
         this.consultaRepository = consultaRepository;
     }
 
@@ -27,12 +27,12 @@ public class ConsultaService{
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
-    public List<Paciente> procurarPacientesDoMedico(long  idMedico) {
+    public List<Paciente> procurarPacientesDoMedico(UUID idMedico) {
             return consultaRepository.findPacientesByMedico(idMedico);
     }
 
     public Consulta atualizarConsulta(Consulta c){
-        Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getMedico().getIdMedico());
+        Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getIdChave());
 
         if(optionalConsulta.isPresent()){
             Consulta toUpdate = optionalConsulta.get();

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/Consulta")
@@ -30,7 +31,7 @@ public class    ConsultaController {
     }
 
     @GetMapping(path = "/findPacientes/{idMedico}")
-    List<Paciente> listaDepacientesDoMedico(@PathVariable long idMedico){
+    List<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
         return consultaService.procurarPacientesDoMedico(idMedico);
     }
 

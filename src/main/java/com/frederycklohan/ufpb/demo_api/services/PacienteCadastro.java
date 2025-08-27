@@ -5,6 +5,7 @@ import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PacienteCadastro {
@@ -42,7 +43,7 @@ public class PacienteCadastro {
         return null;
     }
 
-    public void deletarPaciente(long idPaciente) {
+    public void deletarPaciente(UUID idPaciente) {
         pacienteRepository.findById(idPaciente)
                 .ifPresent(p ->pacienteRepository.deleteById(p.getIdPaciente()));
     }

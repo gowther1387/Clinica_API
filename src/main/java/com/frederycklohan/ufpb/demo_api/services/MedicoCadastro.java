@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MedicoCadastro {
@@ -52,7 +53,7 @@ public class MedicoCadastro {
         return null;
     }
 
-    public void deletarMedico(long idMedico){
+    public void deletarMedico(UUID idMedico){
 
         medicoRepository.findById(idMedico)
                 .ifPresent(m ->medicoRepository.deleteById(m.getIdMedico()));

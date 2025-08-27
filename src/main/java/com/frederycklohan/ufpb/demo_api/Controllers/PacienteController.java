@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/api/paciente")
@@ -36,7 +37,7 @@ public class PacienteController {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = "/dltPaciente/{idPaciente}")
-    public void deletarPaciente( @PathVariable long idPaciente) {
+    public void deletarPaciente( @PathVariable UUID idPaciente) {
         pacienteCadastro.deletarPaciente(idPaciente);
     }
 
