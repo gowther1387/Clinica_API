@@ -1,9 +1,8 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
-import com.frederycklohan.ufpb.demo_api.models.Medico;
+import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
-import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class ConsultaService{
         return consultaRepository.save(c);
     }
 
-    public Consulta procurarConsultaPorId(long idChave){
+    public Consulta procurarConsultaPorId(UUID idChave){
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
@@ -46,7 +45,7 @@ public class ConsultaService{
         return null;
     }
 
-    public void deletarConsulta(long idChave){
+    public void deletarConsulta(UUID idChave){
         consultaRepository.findById(idChave).ifPresent(c -> consultaRepository.deleteById(c.getIdChave()));
     }
 }

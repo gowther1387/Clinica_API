@@ -37,8 +37,6 @@ public class Paciente {
     public Set<Consulta> consultas ;
 
 
-
-
     public UUID getIdPaciente() {
         return idPaciente;
     }

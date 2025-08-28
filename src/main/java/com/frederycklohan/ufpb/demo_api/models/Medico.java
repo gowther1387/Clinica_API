@@ -3,11 +3,12 @@ package com.frederycklohan.ufpb.demo_api.models;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.UUID;
 
 
 @Entity
-@Table(name = "medicos", schema = "public")
+@Table(name = "medico", schema = "public")
 public class Medico {
 
     @Id
@@ -28,6 +29,9 @@ public class Medico {
 
     @Column(name = "email", length = 100, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "medico")
+    private Collection<Consulta> consulta;
 
     public UUID getIdMedico() {
         return idMedico;

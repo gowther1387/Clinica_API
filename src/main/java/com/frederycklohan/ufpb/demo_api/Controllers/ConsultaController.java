@@ -26,7 +26,7 @@ public class    ConsultaController {
     }
 
     @GetMapping(path = "/findConsultas/{idChave}")
-    public Consulta consultarConsulta(@PathVariable long idChave){
+    public Consulta consultarConsulta(@PathVariable UUID idChave){
         return consultaService.procurarConsultaPorId(idChave);
     }
 
@@ -36,12 +36,12 @@ public class    ConsultaController {
     }
 
     @PutMapping(path = "/attConsulta/{idChave}")
-    public Consulta atualizarConsulta(@PathVariable long idChave, @RequestBody Consulta c){
+    public Consulta atualizarConsulta(@PathVariable UUID idChave, @RequestBody Consulta c){
         return consultaService.atualizarConsulta(c);
     }
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = "/dltConsulta/{idChave}")
-    public void deletarConsulta(@PathVariable long idChave){
+    public void deletarConsulta(@PathVariable UUID idChave){
         consultaService.deletarConsulta(idChave);
     }
 

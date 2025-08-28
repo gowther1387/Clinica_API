@@ -6,21 +6,22 @@ import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "consulta")
 public class Consulta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "IdChave")
-    private long idChave;
+    private UUID idChave;
 
     @Column(nullable = false)
     private LocalDate dataHora;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn( name = "medico", nullable = false)
+    @JoinColumn( name = "idMedico", nullable = false)
     private Medico medico;
 
     @ManyToMany()
@@ -43,11 +44,11 @@ public class Consulta {
         this.dataHora = dataHora;
     }
 
-    public long getIdChave() {
+    public UUID getIdChave() {
         return idChave;
     }
 
-    public void setIdChave(long idChave) {
+    public void setIdChave(UUID idChave) {
         this.idChave = idChave;
     }
 
