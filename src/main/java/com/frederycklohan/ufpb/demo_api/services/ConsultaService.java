@@ -3,8 +3,11 @@ package com.frederycklohan.ufpb.demo_api.services;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
+import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
+import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -13,9 +16,13 @@ import java.util.UUID;
 public class ConsultaService{
 
     private final ConsultaRepository consultaRepository;
+    private final MedicoRepository medicoRepository;
+    private final PacienteRepository pacienteRepository;
 
-    ConsultaService(ConsultaRepository consultaRepository) {
+    public ConsultaService(ConsultaRepository consultaRepository,  MedicoRepository medicoRepository, PacienteRepository pacienteRepository) {
         this.consultaRepository = consultaRepository;
+        this.medicoRepository = medicoRepository;
+        this.pacienteRepository = pacienteRepository;
     }
 
     public Consulta cadastrarConsulta(Consulta c) {
@@ -27,7 +34,11 @@ public class ConsultaService{
     }
 
     public List<Paciente> procurarPacientesDoMedico(UUID idMedico) {
-            return consultaRepository.findPacientesByMedico(idMedico);
+          return consultaRepository.findPacienteByMedico(idMedico);
+    }
+
+    public List<Consulta> todasConsultas() {
+        return consultaRepository.findAll();
     }
 
     public Consulta atualizarConsulta(Consulta c){

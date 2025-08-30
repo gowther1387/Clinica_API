@@ -30,6 +30,11 @@ public class PacienteController {
         return pacienteCadastro.procurarPacientePorCpf(cpf);
     }
 
+    @GetMapping("/findAll")
+    public List<Paciente> listaPacientes(){
+           return pacienteCadastro.listaTodosPacientes();
+    }
+
     @GetMapping( path ="/paciente/{rg}")
     public Paciente procurarPacientePorRg(@PathVariable String rg) {
         return pacienteCadastro.procurarPacientePorRg(rg);

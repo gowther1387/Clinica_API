@@ -4,6 +4,7 @@ import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,6 +27,10 @@ public class PacienteCadastro {
 
     public Paciente procurarPacientePorCpf(String cpf) {
         return pacienteRepository.getReferenceByCpf(cpf);
+    }
+
+    public List<Paciente> listaTodosPacientes(){
+        return pacienteRepository.findAll();
     }
 
     

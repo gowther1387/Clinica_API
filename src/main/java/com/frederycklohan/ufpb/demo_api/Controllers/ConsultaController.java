@@ -7,6 +7,7 @@ import com.frederycklohan.ufpb.demo_api.services.ConsultaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,8 +32,13 @@ public class    ConsultaController {
     }
 
     @GetMapping(path = "/findPacientes/{idMedico}")
-    List<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
+    public List<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
         return consultaService.procurarPacientesDoMedico(idMedico);
+    }
+
+    @GetMapping("/findAllConsultas")
+    public List<Consulta> listaConsultas(){
+        return consultaService.todasConsultas();
     }
 
     @PutMapping(path = "/attConsulta/{idChave}")
