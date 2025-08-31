@@ -15,5 +15,5 @@ public interface ConsultaRepository extends JpaRepository<Consulta, UUID> {
 
 
     @Query("SELECT p FROM Consulta c JOIN c.pacientes p WHERE c.medico.idMedico = :idMedico")
-    List<Paciente> findPacienteByMedico(@Param("idMedico") UUID idMedico);
+    List<Paciente> findPacienteByIdMedico(@Param("idMedico") UUID idMedico);
 }

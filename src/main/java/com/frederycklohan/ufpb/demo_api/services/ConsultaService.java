@@ -34,7 +34,7 @@ public class ConsultaService{
     }
 
     public List<Paciente> procurarPacientesDoMedico(UUID idMedico) {
-          return consultaRepository.findPacienteByMedico(idMedico);
+          return consultaRepository.findPacienteByIdMedico(idMedico);
     }
 
     public List<Consulta> todasConsultas() {

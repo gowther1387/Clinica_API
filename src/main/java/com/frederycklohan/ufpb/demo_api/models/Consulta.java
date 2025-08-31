@@ -5,6 +5,7 @@ import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,11 +27,11 @@ public class Consulta {
 
     @ManyToMany()
     @JoinTable(
-                name = "consulta_paciente",
-                joinColumns = @JoinColumn(name = "idChave"),
+                name = "medico_paciente",
+                joinColumns = @JoinColumn(name = "medico"),
                 inverseJoinColumns = @JoinColumn(name = "idPaciente")
     )
-    private Set<Paciente> pacientes;
+    private List<Paciente> pacientes;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -60,11 +61,11 @@ public class Consulta {
         this.medico = medico;
     }
 
-    public Set<Paciente> getPacientes() {
+    public List<Paciente> getPacientes() {
         return pacientes;
     }
 
-    public void setPacientes(Set<Paciente> pacientes) {
+    public void setPacientes(List<Paciente> pacientes) {
         this.pacientes = pacientes;
     }
 
