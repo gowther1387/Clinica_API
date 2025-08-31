@@ -1,10 +1,12 @@
 package com.frederycklohan.ufpb.demo_api.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,6 +36,7 @@ public class Paciente {
     @Column(name = "email")
     private String email;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "pacientes")
     public Collection<Consulta> consulta ;
 
@@ -101,6 +104,19 @@ public class Paciente {
 
     public void setConsultas(Set<Consulta> consulta) {
         this.consulta = consulta;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Paciente paciente = (Paciente) o;
+        return idPaciente != null && idPaciente.equals(paciente.idPaciente);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idPaciente);
     }
 
     @Override

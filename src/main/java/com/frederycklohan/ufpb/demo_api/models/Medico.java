@@ -1,9 +1,11 @@
 package com.frederycklohan.ufpb.demo_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -30,6 +32,7 @@ public class Medico {
     @Column(name = "email", length = 100, nullable = false)
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "medico")
     private Collection<Consulta> consulta;
 
@@ -79,6 +82,18 @@ public class Medico {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Medico medico = (Medico) o;
+        return crm == medico.crm && Objects.equals(idMedico, medico.idMedico) && Objects.equals(nome, medico.nome) && especializacao == medico.especializacao && Objects.equals(telefone, medico.telefone) && Objects.equals(email, medico.email) && Objects.equals(consulta, medico.consulta);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idMedico, nome, especializacao, crm, telefone, email, consulta);
     }
 
     @Override

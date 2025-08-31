@@ -30,11 +30,15 @@ public class ConsultaService{
         Medico medicoExistente = medicoRepository.findById(c.getMedico().getIdMedico())
                 .orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID fornecido."));
 
-        //Transforma o objeto em uma entidade legivel pelo JSON
-        Set<Paciente> pacientesExistentes = c.getPacientes().stream()
-                .map(p -> pacienteRepository.findById(p.getIdPaciente())
-                        .orElseThrow(() -> new IllegalArgumentException("Um ou mais pacientes não foram encontrados.")))
-                .collect(Collectors.toSet());
+
+        //Transforma o objeto em uma entidade legivel pelo JSON e garante que ira fazer o cadastro mesmo se não tiver pacientes ja cadastrados
+        Set<Paciente> pacientesExistentes = new HashSet<>();
+        if (c.getPacientes() != null) {
+            pacientesExistentes = c.getPacientes().stream()
+                    .map(p -> pacienteRepository.findById(p.getIdPaciente())
+                            .orElseThrow(() -> new IllegalArgumentException("Um ou mais pacientes não foram encontrados.")))
+                    .collect(Collectors.toSet());
+        }
 
         //Assossia as entidades a consulta
         c.setMedico(medicoExistente);

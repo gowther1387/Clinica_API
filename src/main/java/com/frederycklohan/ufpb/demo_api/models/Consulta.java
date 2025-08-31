@@ -6,6 +6,7 @@ import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ public class Consulta {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "consulta_paciente",
-            joinColumns = @JoinColumn(name = "medico"),
+            joinColumns = @JoinColumn(name = "idChave"),
             inverseJoinColumns = @JoinColumn(name = "idPaciente")
     )
     private Set<Paciente> pacientes;
@@ -75,6 +76,19 @@ public class Consulta {
 
     public void setStatusConsulta(StatusConsulta statusConsulta) {
         this.statusConsulta = statusConsulta;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Consulta consulta = (Consulta) o;
+        return idChave != null && idChave.equals(consulta.idChave);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idChave);
     }
 
     @Override
