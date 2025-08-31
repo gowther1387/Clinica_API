@@ -4,6 +4,7 @@ package com.frederycklohan.ufpb.demo_api.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,7 +35,7 @@ public class Paciente {
     private String email;
 
     @ManyToMany(mappedBy = "pacientes")
-    public Set<Consulta> consultas ;
+    public Collection<Consulta> consulta ;
 
 
     public UUID getIdPaciente() {
@@ -94,12 +95,12 @@ public class Paciente {
     }
 
 
-    public Set<Consulta> getConsultas() {
-        return consultas;
+    public Collection<Consulta> getConsultas() {
+        return consulta;
     }
 
-    public void setConsultas(Set<Consulta> consultas) {
-        this.consultas = consultas;
+    public void setConsultas(Set<Consulta> consulta) {
+        this.consulta = consulta;
     }
 
     @Override

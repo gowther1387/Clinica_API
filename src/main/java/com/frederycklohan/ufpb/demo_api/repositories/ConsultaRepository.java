@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public interface ConsultaRepository extends JpaRepository<Consulta, UUID> {
@@ -15,5 +16,5 @@ public interface ConsultaRepository extends JpaRepository<Consulta, UUID> {
 
 
     @Query("SELECT p FROM Consulta c JOIN c.pacientes p WHERE c.medico.idMedico = :idMedico")
-    List<Paciente> findPacienteByIdMedico(@Param("idMedico") UUID idMedico);
+    Set<Paciente> findPacienteByIdMedico(@Param("idMedico") UUID idMedico);
 }

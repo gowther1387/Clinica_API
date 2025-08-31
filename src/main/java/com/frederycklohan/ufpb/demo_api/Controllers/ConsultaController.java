@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -32,7 +33,7 @@ public class    ConsultaController {
     }
 
     @GetMapping(path = "/findPacientes/{idMedico}")
-    public List<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
+    public Set<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
         return consultaService.procurarPacientesDoMedico(idMedico);
     }
 

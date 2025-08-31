@@ -25,13 +25,13 @@ public class Consulta {
     @JoinColumn( name = "idMedico", nullable = false)
     private Medico medico;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-                name = "medico_paciente",
-                joinColumns = @JoinColumn(name = "medico"),
-                inverseJoinColumns = @JoinColumn(name = "idPaciente")
+            name = "consulta_paciente",
+            joinColumns = @JoinColumn(name = "medico"),
+            inverseJoinColumns = @JoinColumn(name = "idPaciente")
     )
-    private List<Paciente> pacientes;
+    private Set<Paciente> pacientes;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -61,11 +61,11 @@ public class Consulta {
         this.medico = medico;
     }
 
-    public List<Paciente> getPacientes() {
+    public Set<Paciente> getPacientes() {
         return pacientes;
     }
 
-    public void setPacientes(List<Paciente> pacientes) {
+    public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
     }
 

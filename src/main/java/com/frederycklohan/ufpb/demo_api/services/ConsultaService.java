@@ -1,16 +1,15 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
+import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
 import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
 import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ConsultaService{
@@ -26,6 +25,22 @@ public class ConsultaService{
     }
 
     public Consulta cadastrarConsulta(Consulta c) {
+
+        //Transforma o objeto em uma entidade legivel pelo JSON
+        Medico medicoExistente = medicoRepository.findById(c.getMedico().getIdMedico())
+                .orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID fornecido."));
+
+        //Transforma o objeto em uma entidade legivel pelo JSON
+        Set<Paciente> pacientesExistentes = c.getPacientes().stream()
+                .map(p -> pacienteRepository.findById(p.getIdPaciente())
+                        .orElseThrow(() -> new IllegalArgumentException("Um ou mais pacientes não foram encontrados.")))
+                .collect(Collectors.toSet());
+
+        //Assossia as entidades a consulta
+        c.setMedico(medicoExistente);
+        c.setPacientes(pacientesExistentes);
+
+        //Salva a consulta
         return consultaRepository.save(c);
     }
 
@@ -33,8 +48,11 @@ public class ConsultaService{
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
-    public List<Paciente> procurarPacientesDoMedico(UUID idMedico) {
-          return consultaRepository.findPacienteByIdMedico(idMedico);
+    public Set<Paciente> procurarPacientesDoMedico(UUID idMedico) {
+
+
+
+        return consultaRepository.findPacienteByIdMedico(idMedico);
     }
 
     public List<Consulta> todasConsultas() {
