@@ -10,3 +10,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1s
+    remote:
+      enabled: false
+    jmx:
+      enabled: false

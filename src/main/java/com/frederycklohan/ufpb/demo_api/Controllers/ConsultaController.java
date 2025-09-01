@@ -1,5 +1,7 @@
 package com.frederycklohan.ufpb.demo_api.Controllers;
 
+import com.frederycklohan.ufpb.demo_api.DTO.ConsultaDTO;
+import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
@@ -23,7 +25,7 @@ public class    ConsultaController {
     }
 
     @PostMapping("/cdstConsulta")
-    public Consulta cadastrarConsulta(@RequestBody Consulta c){
+    public Consulta cadastrarConsulta(@RequestBody ConsultaDTO c){
         return consultaService.cadastrarConsulta(c);
     }
 
@@ -33,13 +35,16 @@ public class    ConsultaController {
     }
 
     @GetMapping(path = "/findPacientes/{idMedico}")
-    public Set<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
+    public Set<PacienteDTO> listaDepacientesDoMedico(@PathVariable UUID idMedico){
         return consultaService.procurarPacientesDoMedico(idMedico);
     }
 
     @GetMapping("/findAllConsultas")
-    public List<Consulta> listaConsultas(){
-        return consultaService.todasConsultas();
+    public List<ConsultaDTO> listaConsultas(){
+        return consultaService.todasConsultas()
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collector.toList());
     }
 
     @PutMapping(path = "/attConsulta/{idChave}")

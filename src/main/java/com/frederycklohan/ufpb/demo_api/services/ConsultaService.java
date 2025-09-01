@@ -1,5 +1,6 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
+import com.frederycklohan.ufpb.demo_api.DTO.ConsultaDTO;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
@@ -48,8 +49,9 @@ public class ConsultaService{
         return consultaRepository.save(c);
     }
 
-    public Consulta procurarConsultaPorId(UUID idChave){
-        return consultaRepository.getReferenceByIdChave(idChave);
+    public ConsultaDTO procurarConsultaPorId(UUID idChave){
+        return consultaRepository.getReferenceByIdChave(idChave)
+                .stream();
     }
 
     public Set<Paciente> procurarPacientesDoMedico(UUID idMedico) {
@@ -59,9 +61,38 @@ public class ConsultaService{
         return consultaRepository.findPacienteByIdMedico(idMedico);
     }
 
-    public List<Consulta> todasConsultas() {
-        return consultaRepository.findAll();
+    public List<ConsultaDTO> todasConsultas() {
+            List<Consulta> consultas = consultaRepository.findAll();
+            return consultas.stream()
+                    .map(this::convertToDto)
+                    .collect(Collectors.toList());
     }
+
+    public ConsultaDTO convertToDto(Consulta consulta) {
+        if (consulta == null) {
+            return null;
+        }
+
+        ConsultaDTO dto = new ConsultaDTO();
+        dto.setDataHora(consulta.getDataHora());
+
+        // Verifique se o médico não é nulo antes de pegar o ID
+        if (consulta.getMedico() != null) {
+            dto.setIdMedico(consulta.getMedico().getIdMedico());
+        }
+
+        // Verifique se a lista de pacientes não é nula antes de mapear
+        if (consulta.getPacientes() != null) {
+            dto.setIdsPacientes(consulta.getPacientes().stream()
+                    .map(Paciente::getIdPaciente)
+                    .collect(Collectors.toSet()));
+        }
+
+        dto.setStatusConsulta(consulta.getStatusConsulta());
+
+        return dto;
+    }
+
 
     public Consulta atualizarConsulta(Consulta c){
         Optional<Consulta> optionalConsulta = consultaRepository.findById(c.getIdChave());

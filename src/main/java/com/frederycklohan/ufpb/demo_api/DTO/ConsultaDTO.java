@@ -2,11 +2,21 @@ package com.frederycklohan.ufpb.demo_api.DTO;
 
 import ch.qos.logback.core.status.Status;
 import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
+import com.frederycklohan.ufpb.demo_api.models.Medico;
+import com.frederycklohan.ufpb.demo_api.models.Paciente;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ConsultaDTO {
-    private String medico;
+    private MedicoDTO medico;
+    private Set<PacienteDTO> pacientes;
     private LocalDate dataHora;
     private StatusConsulta statusConsulta;
 }

@@ -86,16 +86,15 @@ public class Medico {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Medico medico = (Medico) o;
-        return crm == medico.crm && Objects.equals(idMedico, medico.idMedico) && Objects.equals(nome, medico.nome) && especializacao == medico.especializacao && Objects.equals(telefone, medico.telefone) && Objects.equals(email, medico.email) && Objects.equals(consulta, medico.consulta);
+        return idMedico != null && idMedico.equals(medico.idMedico);
     }
-
     @Override
     public int hashCode() {
-        return Objects.hash(idMedico, nome, especializacao, crm, telefone, email, consulta);
+        return Objects.hash(idMedico);
     }
-
     @Override
     public String toString() {
         return "Medico{" +

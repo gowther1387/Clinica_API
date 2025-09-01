@@ -1,5 +1,6 @@
 package com.frederycklohan.ufpb.demo_api.repositories;
 
+import com.frederycklohan.ufpb.demo_api.DTO.ConsultaDTO;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
