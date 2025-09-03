@@ -25,7 +25,7 @@ public class    ConsultaController {
     }
 
     @PostMapping("/cdstConsulta")
-    public Consulta cadastrarConsulta(@RequestBody ConsultaDTO c){
+    public Consulta cadastrarConsulta(@RequestBody Consulta c){
         return consultaService.cadastrarConsulta(c);
     }
 
@@ -35,16 +35,13 @@ public class    ConsultaController {
     }
 
     @GetMapping(path = "/findPacientes/{idMedico}")
-    public Set<PacienteDTO> listaDepacientesDoMedico(@PathVariable UUID idMedico){
+    public Set<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
         return consultaService.procurarPacientesDoMedico(idMedico);
     }
 
     @GetMapping("/findAllConsultas")
     public List<ConsultaDTO> listaConsultas(){
-        return consultaService.todasConsultas()
-                .stream()
-                .map(this::convertToDto)
-                .collect(Collector.toList());
+        return consultaService.todasConsultas();
     }
 
     @PutMapping(path = "/attConsulta/{idChave}")

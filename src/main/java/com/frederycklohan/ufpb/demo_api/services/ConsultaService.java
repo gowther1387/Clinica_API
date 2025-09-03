@@ -1,12 +1,15 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
 import com.frederycklohan.ufpb.demo_api.DTO.ConsultaDTO;
+import com.frederycklohan.ufpb.demo_api.DTO.MedicoDTO;
+import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import com.frederycklohan.ufpb.demo_api.repositories.ConsultaRepository;
 import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
 import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -19,7 +22,7 @@ public class ConsultaService{
     private final MedicoRepository medicoRepository;
     private final PacienteRepository pacienteRepository;
 
-    public ConsultaService(ConsultaRepository consultaRepository,  MedicoRepository medicoRepository, PacienteRepository pacienteRepository) {
+    public ConsultaService(ConsultaRepository consultaRepository, MedicoRepository medicoRepository, PacienteRepository pacienteRepository) {
         this.consultaRepository = consultaRepository;
         this.medicoRepository = medicoRepository;
         this.pacienteRepository = pacienteRepository;
@@ -49,16 +52,22 @@ public class ConsultaService{
         return consultaRepository.save(c);
     }
 
-    public ConsultaDTO procurarConsultaPorId(UUID idChave){
-        return consultaRepository.getReferenceByIdChave(idChave)
-                .stream();
+    public Consulta procurarConsultaPorId(UUID idChave){
+        return consultaRepository.getReferenceByIdChave(idChave);
     }
 
     public Set<Paciente> procurarPacientesDoMedico(UUID idMedico) {
 
-
-
         return consultaRepository.findPacienteByIdMedico(idMedico);
+
+/*        Set<Paciente> pacientesDoMedico = new HashSet<>();
+            if(c.getMedico().getIdMedico() != null) {
+                pacientesDoMedico = c.getPacientes()
+                        .stream()
+                        .map(p -> consultaRepository.findPacienteByIdMedico(c.getMedico().getIdMedico()))
+                        .collect(Collectors.toSet());
+            }
+            return pacientesDoMedico;*/
     }
 
     public List<ConsultaDTO> todasConsultas() {
@@ -73,24 +82,23 @@ public class ConsultaService{
             return null;
         }
 
-        ConsultaDTO dto = new ConsultaDTO();
-        dto.setDataHora(consulta.getDataHora());
+        ConsultaDTO consultaDTO = new ConsultaDTO();
+        consultaDTO.setDataHora(consulta.getDataHora());
 
-        // Verifique se o médico não é nulo antes de pegar o ID
         if (consulta.getMedico() != null) {
-            dto.setIdMedico(consulta.getMedico().getIdMedico());
+            consultaDTO.setMedico(consulta.getMedico().getIdMedico());
         }
 
-        // Verifique se a lista de pacientes não é nula antes de mapear
+
         if (consulta.getPacientes() != null) {
-            dto.setIdsPacientes(consulta.getPacientes().stream()
+            consultaDTO.setPacientes(consulta.getPacientes().stream()
                     .map(Paciente::getIdPaciente)
                     .collect(Collectors.toSet()));
         }
 
-        dto.setStatusConsulta(consulta.getStatusConsulta());
+        consultaDTO.setStatusConsulta(consulta.getStatusConsulta());
 
-        return dto;
+        return consultaDTO;
     }
 
 

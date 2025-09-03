@@ -1,6 +1,6 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
-import com.frederycklohan.ufpb.demo_api.Controllers.MedicoController;
+import com.frederycklohan.ufpb.demo_api.DTO.MedicoDTO;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
@@ -36,6 +36,17 @@ public class MedicoCadastro {
         return medicoRepository.findByEspecializacao(e);
     }
 
+    public MedicoDTO convertMedicoToDto(Medico m){
+
+
+        MedicoDTO meditoDto = new MedicoDTO();
+        meditoDto.setIdMedico(m.getIdMedico());
+        meditoDto.setNome(m.getNome());
+        meditoDto.setEmail(m.getEmail());
+        meditoDto.setTelefone(m.getTelefone());
+
+        return meditoDto;
+    }
 
     public Medico atualizarMedico(Medico m){
         Optional<Medico> optionalMedico = medicoRepository.findById(m.getIdMedico());
