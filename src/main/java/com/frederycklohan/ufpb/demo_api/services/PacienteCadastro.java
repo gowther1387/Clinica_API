@@ -1,5 +1,6 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
+import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
 import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,15 @@ public class PacienteCadastro {
 
     public List<Paciente> listaTodosPacientes(){
         return pacienteRepository.findAll();
+    }
+
+    public static PacienteDTO convertPacienteToDto(Paciente p){
+        PacienteDTO pacienteDTO = new PacienteDTO();
+        pacienteDTO.setIdPaciente(p.getIdPaciente());
+        pacienteDTO.setCpf(p.getCpf());
+        pacienteDTO.setNome(p.getNome());
+        pacienteDTO.setDataNascimento(p.getIdade());
+        return pacienteDTO;
     }
 
     

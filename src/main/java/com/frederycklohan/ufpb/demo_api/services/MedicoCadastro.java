@@ -36,6 +36,7 @@ public class MedicoCadastro {
         return medicoRepository.findByEspecializacao(e);
     }
 
+
     public MedicoDTO convertMedicoToDto(Medico m){
 
 

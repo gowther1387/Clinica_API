@@ -35,7 +35,7 @@ public class    ConsultaController {
     }
 
     @GetMapping(path = "/findPacientes/{idMedico}")
-    public Set<Paciente> listaDepacientesDoMedico(@PathVariable UUID idMedico){
+    public Set<PacienteDTO> listaDepacientesDoMedico(@PathVariable UUID idMedico){
         return consultaService.procurarPacientesDoMedico(idMedico);
     }
 

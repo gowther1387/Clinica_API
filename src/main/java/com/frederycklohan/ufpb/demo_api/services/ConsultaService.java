@@ -3,6 +3,9 @@ package com.frederycklohan.ufpb.demo_api.services;
 import com.frederycklohan.ufpb.demo_api.DTO.ConsultaDTO;
 import com.frederycklohan.ufpb.demo_api.DTO.MedicoDTO;
 import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
+import com.frederycklohan.ufpb.demo_api.config.ConsultaMapper;
+import com.frederycklohan.ufpb.demo_api.config.MedicoMapper;
+import com.frederycklohan.ufpb.demo_api.config.PacienteMapper;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
@@ -21,11 +24,26 @@ public class ConsultaService{
     private final ConsultaRepository consultaRepository;
     private final MedicoRepository medicoRepository;
     private final PacienteRepository pacienteRepository;
+    private final PacienteCadastro pacienteCadastro;
+    private final PacienteMapper pacienteMapper;
+    private final ConsultaMapper consultaMapper;
+    private final MedicoMapper medicoMapper;
 
-    public ConsultaService(ConsultaRepository consultaRepository, MedicoRepository medicoRepository, PacienteRepository pacienteRepository) {
+    public ConsultaService(ConsultaRepository consultaRepository,
+                           MedicoRepository medicoRepository,
+                           PacienteRepository pacienteRepository,
+                           PacienteCadastro pacienteCadastro,
+                           PacienteMapper pacienteMapper,
+                           ConsultaMapper consultaMapper,
+                           MedicoMapper medicoMapper) {
         this.consultaRepository = consultaRepository;
         this.medicoRepository = medicoRepository;
         this.pacienteRepository = pacienteRepository;
+        this.pacienteCadastro = pacienteCadastro;
+        this.pacienteMapper = pacienteMapper;
+        this.consultaMapper = consultaMapper;
+        this.medicoMapper = medicoMapper;
+
     }
 
     public Consulta cadastrarConsulta(Consulta c) {
@@ -56,28 +74,24 @@ public class ConsultaService{
         return consultaRepository.getReferenceByIdChave(idChave);
     }
 
-    public Set<Paciente> procurarPacientesDoMedico(UUID idMedico) {
+    public Set<PacienteDTO> procurarPacientesDoMedico(UUID idMedico) {
 
-        return consultaRepository.findPacienteByIdMedico(idMedico);
+      Set<Consulta> pacientesDoMedico = new HashSet<>();
+      return pacientesDoMedico.stream()
+              .flatMap(consulta -> consulta.getPacientes().stream())
+              .map(this.pacienteMapper::toDTO)
+              .collect(Collectors.toSet());
 
-/*        Set<Paciente> pacientesDoMedico = new HashSet<>();
-            if(c.getMedico().getIdMedico() != null) {
-                pacientesDoMedico = c.getPacientes()
-                        .stream()
-                        .map(p -> consultaRepository.findPacienteByIdMedico(c.getMedico().getIdMedico()))
-                        .collect(Collectors.toSet());
-            }
-            return pacientesDoMedico;*/
     }
 
     public List<ConsultaDTO> todasConsultas() {
             List<Consulta> consultas = consultaRepository.findAll();
             return consultas.stream()
-                    .map(this::convertToDto)
+                    .map(this::convertConsultaToDto)
                     .collect(Collectors.toList());
     }
 
-    public ConsultaDTO convertToDto(Consulta consulta) {
+    public ConsultaDTO convertConsultaToDto(Consulta consulta) {
         if (consulta == null) {
             return null;
         }
