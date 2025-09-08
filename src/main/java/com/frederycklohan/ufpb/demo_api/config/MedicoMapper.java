@@ -12,6 +12,11 @@ public class MedicoMapper {
 
     private final ModelMapper modelMapper;
 
+    public MedicoMapper() {
+        this.modelMapper = new ModelMapper();
+    }
+
+
     public MedicoMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }

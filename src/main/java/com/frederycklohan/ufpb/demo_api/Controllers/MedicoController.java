@@ -1,6 +1,7 @@
 package com.frederycklohan.ufpb.demo_api.Controllers;
 
 
+import com.frederycklohan.ufpb.demo_api.DTO.MedicoDTO;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class MedicoController {
     }
 
     @PostMapping
-    public Medico cadastroMedico(@RequestBody Medico m){
+    public MedicoDTO cadastroMedico(@RequestBody MedicoDTO m){
         return medicoCadastro.cadastrarMedico(m);
     }
 

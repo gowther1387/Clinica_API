@@ -10,6 +10,10 @@ public class ConsultaMapper {
 
     private final ModelMapper modelMapper;
 
+    public ConsultaMapper() {
+        this.modelMapper = new ModelMapper();
+    }
+
     public ConsultaMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }

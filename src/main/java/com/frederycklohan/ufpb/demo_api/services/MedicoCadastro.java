@@ -2,6 +2,7 @@ package com.frederycklohan.ufpb.demo_api.services;
 
 import com.frederycklohan.ufpb.demo_api.DTO.MedicoDTO;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
+import com.frederycklohan.ufpb.demo_api.config.MedicoMapper;
 import com.frederycklohan.ufpb.demo_api.repositories.MedicoRepository;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,19 @@ import java.util.UUID;
 public class MedicoCadastro {
 
     private final MedicoRepository medicoRepository;
+    private final MedicoMapper medicoMapper;
 
-    MedicoCadastro(MedicoRepository medicoRepository) {
+    MedicoCadastro(MedicoRepository medicoRepository,
+                   MedicoMapper medicoMapper) {
         this.medicoRepository = medicoRepository;
+        this.medicoMapper = medicoMapper;
     }
 
-    public Medico cadastrarMedico(Medico m) {
-        return medicoRepository.save(m);
+    public MedicoDTO cadastrarMedico(MedicoDTO medicoDTO) {
+
+        Medico medico = medicoMapper.toEntity(medicoDTO);
+        medico = medicoRepository.save(medico);
+        return medicoMapper.toDTO(medico);
     }
 
     public Medico ProcurarMedicoPorCrm(long crm){

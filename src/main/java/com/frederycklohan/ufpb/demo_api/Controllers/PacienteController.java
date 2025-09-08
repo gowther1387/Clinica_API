@@ -1,5 +1,6 @@
 package com.frederycklohan.ufpb.demo_api.Controllers;
 
+import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import com.frederycklohan.ufpb.demo_api.services.PacienteCadastro;
@@ -21,7 +22,7 @@ public class PacienteController {
     }
 
     @PostMapping("/cdstPaciente")
-    public Paciente cadastrarPaciente(@RequestBody Paciente p) {
+    public PacienteDTO cadastrarPaciente(@RequestBody PacienteDTO p) {
         return pacienteCadastro.cadastrarPaciente(p);
     }
 

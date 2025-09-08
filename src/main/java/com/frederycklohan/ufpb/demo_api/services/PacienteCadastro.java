@@ -1,6 +1,7 @@
 package com.frederycklohan.ufpb.demo_api.services;
 
 import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
+import com.frederycklohan.ufpb.demo_api.config.PacienteMapper;
 import com.frederycklohan.ufpb.demo_api.repositories.PacienteRepository;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import org.springframework.stereotype.Service;
@@ -12,14 +13,20 @@ import java.util.UUID;
 @Service
 public class PacienteCadastro {
 
-    private PacienteRepository pacienteRepository;
+    private final PacienteRepository pacienteRepository;
+    private final PacienteMapper pacienteMapper;
 
-    private PacienteCadastro(PacienteRepository pacienteRepository) {
+    private PacienteCadastro(PacienteRepository pacienteRepository,
+                             PacienteMapper pacienteMapper) {
         this.pacienteRepository = pacienteRepository;
+        this.pacienteMapper = pacienteMapper;
     }
 
-    public Paciente cadastrarPaciente(Paciente p)   {
-        return pacienteRepository.save(p);
+    public PacienteDTO cadastrarPaciente(PacienteDTO pacienteDTO)   {
+
+        Paciente paciente = pacienteMapper.toEntity(pacienteDTO);
+        paciente = pacienteRepository.save(paciente);
+        return pacienteMapper.toDTO(paciente);
     }
 
     public Paciente procurarPacientePorRg(String rg){

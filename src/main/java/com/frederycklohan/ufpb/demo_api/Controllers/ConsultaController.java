@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/Consulta")
-public class    ConsultaController {
+public class ConsultaController {
 
     private final ConsultaService consultaService;
 
@@ -25,8 +25,10 @@ public class    ConsultaController {
     }
 
     @PostMapping("/cdstConsulta")
-    public Consulta cadastrarConsulta(@RequestBody Consulta c){
+    public ConsultaDTO cadastrarConsulta(@RequestBody ConsultaDTO c){
+
         return consultaService.cadastrarConsulta(c);
+
     }
 
     @GetMapping(path = "/findConsultas/{idChave}")
@@ -34,10 +36,10 @@ public class    ConsultaController {
         return consultaService.procurarConsultaPorId(idChave);
     }
 
-    @GetMapping(path = "/findPacientes/{idMedico}")
+/*    @GetMapping(path = "/findPacientes/{idMedico}")
     public Set<PacienteDTO> listaDepacientesDoMedico(@PathVariable UUID idMedico){
         return consultaService.procurarPacientesDoMedico(idMedico);
-    }
+    }*/
 
     @GetMapping("/findAllConsultas")
     public List<ConsultaDTO> listaConsultas(){

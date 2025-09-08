@@ -15,8 +15,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConsultaDTO {
-    private UUID medico;
-    private Set<UUID> pacientes;
+    private MedicoDTO medico;
+    private Set<PacienteDTO> pacientes;
     private LocalDate dataHora;
     private StatusConsulta statusConsulta;
 }
