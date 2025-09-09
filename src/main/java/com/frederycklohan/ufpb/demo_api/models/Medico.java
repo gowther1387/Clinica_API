@@ -3,6 +3,9 @@ package com.frederycklohan.ufpb.demo_api.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.frederycklohan.ufpb.demo_api.EspecializaçãoMedico.Especializacao;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -17,18 +20,24 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID idMedico;
 
+
+    @NotBlank
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
+    @NotBlank
     @Enumerated(EnumType.STRING)
     private Especializacao especializacao;
 
+    @NotNull
     @Column(name = "crm", nullable = false)
     private long crm;
 
+    @NotBlank
     @Column(name = "telefone", length = 20, nullable = false)
     private String telefone;
 
+    @Email
     @Column(name = "email", length = 100, nullable = false)
     private String email;
 

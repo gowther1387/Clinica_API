@@ -3,6 +3,9 @@ package com.frederycklohan.ufpb.demo_api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -18,21 +21,27 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID idPaciente;
 
+    @NotBlank
     @Column(name = "nome")
     private String nome;
+
 
     @Column(name = "idade")
     private LocalDate idade;
 
+    @NotBlank
     @Column(name = "rg")
     private String rg;
 
+    @NotBlank
     @Column(name = "cpf")
     private String cpf;
 
+    @NotBlank
     @Column(name = "telefone")
     private String telefone;
 
+    @Email
     @Column(name = "email")
     private String email;
 

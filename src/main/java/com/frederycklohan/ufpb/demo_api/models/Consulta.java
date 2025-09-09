@@ -2,6 +2,7 @@ package com.frederycklohan.ufpb.demo_api.models;
 
 import jakarta.persistence.*;
 import com.frederycklohan.ufpb.demo_api.StatusConsulta.StatusConsulta;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,8 +20,10 @@ public class Consulta {
     @Column(name = "IdChave")
     private UUID idChave;
 
+
     @Column(nullable = false)
     private LocalDate dataHora;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn( name = "idMedico", nullable = false)
@@ -37,6 +40,7 @@ public class Consulta {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusConsulta statusConsulta;
+
 
     public LocalDate getDataHora() {
         return dataHora;
