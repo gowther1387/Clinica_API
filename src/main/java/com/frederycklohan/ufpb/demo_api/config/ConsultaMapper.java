@@ -3,9 +3,10 @@ package com.frederycklohan.ufpb.demo_api.config;
 import com.frederycklohan.ufpb.demo_api.DTO.ConsultaDTO;
 import com.frederycklohan.ufpb.demo_api.models.Consulta;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Component
+@Configuration
 public class ConsultaMapper {
 
     private final ModelMapper modelMapper;

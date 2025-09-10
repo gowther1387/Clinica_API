@@ -2,10 +2,13 @@ package com.frederycklohan.ufpb.demo_api.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -47,7 +50,9 @@ public class Paciente {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "pacientes")
-    public Collection<Consulta> consulta ;
+    public Collection<Consulta> consulta;
+
+
 
 
     public UUID getIdPaciente() {

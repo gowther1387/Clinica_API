@@ -5,9 +5,10 @@ import com.frederycklohan.ufpb.demo_api.DTO.PacienteDTO;
 import com.frederycklohan.ufpb.demo_api.models.Medico;
 import com.frederycklohan.ufpb.demo_api.models.Paciente;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Component
+@Configuration
 public class MedicoMapper {
 
     private final ModelMapper modelMapper;

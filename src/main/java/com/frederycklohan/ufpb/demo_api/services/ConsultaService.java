@@ -61,11 +61,8 @@ public class ConsultaService{
 
     }*/
 
-    public List<ConsultaDTO> todasConsultas() {
-            List<Consulta> consultas = consultaRepository.findAll();
-            return consultas.stream()
-                    .map(this::convertConsultaToDto)
-                    .collect(Collectors.toList());
+    public List<Consulta> todasConsultas() {
+        return consultaRepository.findAll();
     }
 
 

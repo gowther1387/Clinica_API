@@ -42,7 +42,7 @@ public class ConsultaController {
     }*/
 
     @GetMapping("/findAllConsultas")
-    public List<ConsultaDTO> listaConsultas(){
+    public List<Consulta> listaConsultas(){
         return consultaService.todasConsultas();
     }
 

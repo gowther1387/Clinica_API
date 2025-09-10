@@ -44,17 +44,6 @@ public class MedicoCadastro {
     }
 
 
-    public MedicoDTO convertMedicoToDto(Medico m){
-
-
-        MedicoDTO meditoDto = new MedicoDTO();
-        meditoDto.setIdMedico(m.getIdMedico());
-        meditoDto.setNome(m.getNome());
-        meditoDto.setEmail(m.getEmail());
-        meditoDto.setTelefone(m.getTelefone());
-
-        return meditoDto;
-    }
 
     public Medico atualizarMedico(Medico m){
         Optional<Medico> optionalMedico = medicoRepository.findById(m.getIdMedico());

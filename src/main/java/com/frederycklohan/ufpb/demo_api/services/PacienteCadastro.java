@@ -41,14 +41,6 @@ public class PacienteCadastro {
         return pacienteRepository.findAll();
     }
 
-    public static PacienteDTO convertPacienteToDto(Paciente p){
-        PacienteDTO pacienteDTO = new PacienteDTO();
-        pacienteDTO.setIdPaciente(p.getIdPaciente());
-        pacienteDTO.setCpf(p.getCpf());
-        pacienteDTO.setNome(p.getNome());
-        pacienteDTO.setDataNascimento(p.getIdade());
-        return pacienteDTO;
-    }
 
     
     public Paciente atualizarPaciente(Paciente p){
